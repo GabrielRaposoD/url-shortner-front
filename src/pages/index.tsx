@@ -1,18 +1,21 @@
-import rangeMap from '@lib/range-map'
-import { NextSeo } from 'next-seo'
+import { NextSeo } from 'next-seo';
+import { Footer, ShortenerCard } from '@components/index';
 
-export default function Index() {
+const Index: React.FC<any> = () => {
   return (
     <>
-      <NextSeo
-        title="Exsign Studio"
-        description="Uma equipe de designers e desenvolvedores de ponta com o objetivo de trazer a experiência e design que seus usuários merecem."
-      />
-      <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden bg-gray-200 ">
-        {rangeMap(3, (i) => {
-          return <h1 className="text-4xl font-semibold" key={i}>Hello World</h1>
-        })}
+      <NextSeo title='Shortener' description="Um simples encurtador de URL's" />
+      <div
+        className='min-w-screen flex flex-col items-center justify-center max-h-screen min-h-screen overflow-hidden bg-gray-900'
+        style={{
+          backgroundImage: 'url(bg.png)',
+        }}
+      >
+        <ShortenerCard />
+        <Footer />
       </div>
     </>
-  )
-}
+  );
+};
+
+export default Index;

@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     <>
       <DefaultSeo
         titleTemplate={
-          router.route === '/' ? 'Exsign Studio' : '%s | Exsign Studio'
+          router.route === '/' ? 'Shortener' : '%s | Shortener'
         }
       />
       <GoogleFonts href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" />
