@@ -1,11 +1,30 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import axios from 'axios';
 
 const ShortenerCard: React.FC<any> = () => {
-  const [url, setUrl] = useState<string>('');
+  const [shortened, setShortened] = useState<string>(null);
+  const inputEl = useRef(null);
 
-  const handleChange = ({ target }) => {
-    console.log(target);
-    setUrl(target.value);
+  const handleChange = () => {
+    console.log(inputEl.current.value);
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.stopPropagation();
+      onSubmit();
+    }
+  };
+
+  const onSubmit = async (): Promise<void> => {
+    const { data } = await axios.post(`http://localhost:3030/shortener`, {
+      url: inputEl.current.value,
+    });
+
+    setShortened(`http://localhost:3000/${data.id}`);
+
+    inputEl.current.value = '';
   };
 
   return (
@@ -19,10 +38,26 @@ const ShortenerCard: React.FC<any> = () => {
       </p>
       <input
         type='text'
-        className='px-2 py-4 rounded'
-        value={url}
-        onChange={handleChange}
+        className='px-2 py-4 mb-5 rounded'
+        ref={inputEl}
+        id='text'
+        onKeyDown={onKeyDown}
       />
+      <button
+        type='submit'
+        onClick={onSubmit}
+        className='bg-primary-400 self-center px-2 py-3 text-xl font-medium text-white rounded'
+      >
+        Submit
+      </button>
+      {shortened ? (
+        <div className='flex flex-col mt-5 text-2xl font-medium text-center text-black'>
+          Here is your link:
+          <a href={shortened} target='_blank' className='text-secondary-700'>
+            {shortened}
+          </a>
+        </div>
+      ) : null}
     </div>
   );
 };
