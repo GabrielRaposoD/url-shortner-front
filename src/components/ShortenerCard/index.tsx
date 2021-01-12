@@ -28,11 +28,11 @@ const ShortenerCard: React.FC<any> = () => {
   };
 
   return (
-    <div className='flex flex-col w-4/12 px-4 py-6 bg-gray-300 rounded-md shadow-lg'>
-      <h1 className='mb-3 text-2xl font-medium text-center text-gray-700'>
+    <div className='md:w-4/12 flex flex-col w-10/12 px-4 py-6 bg-gray-300 rounded-md shadow-lg'>
+      <h1 className='md:text-2xl mb-3 font-medium text-center text-gray-700'>
         Create your shortened URL Link now!
       </h1>
-      <p className='mb-5 text-xl font-medium text-center text-gray-700'>
+      <p className='md:text-xl mb-5 font-medium text-center text-gray-700'>
         Put your link in the input bellow and in just a few seconds receive your
         new link!
       </p>
@@ -46,12 +46,12 @@ const ShortenerCard: React.FC<any> = () => {
       <button
         type='submit'
         onClick={onSubmit}
-        className='bg-primary-400 self-center px-2 py-3 text-xl font-medium text-white rounded'
+        className='bg-primary-400 md:text-xl self-center px-2 py-3 font-medium text-white rounded'
       >
         Submit
       </button>
       {shortened ? (
-        <div className='flex flex-col mt-5 text-2xl font-medium text-center text-black'>
+        <div className='md:text-2xl flex flex-col mt-5 font-medium text-center text-black'>
           Here is your new link:
           <a href={shortened} target='_blank' className='text-secondary-700'>
             {shortened}
