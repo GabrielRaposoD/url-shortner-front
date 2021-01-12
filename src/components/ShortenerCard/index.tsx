@@ -18,11 +18,11 @@ const ShortenerCard: React.FC<any> = () => {
   };
 
   const onSubmit = async (): Promise<void> => {
-    const { data } = await axios.post(`http://localhost:3030/shortener`, {
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}shortener`, {
       url: inputEl.current.value,
     });
 
-    setShortened(`http://localhost:3000/${data.id}`);
+    setShortened(`${process.env.NEXT_PUBLIC_SITE_URL}${data.id}`);
 
     inputEl.current.value = '';
   };

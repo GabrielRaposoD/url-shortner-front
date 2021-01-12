@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 export async function getStaticProps(context) {
   const id = context.params.id;
   const shortened = await fetch(
-    process.env.API_URL + `shortener/${id}`
+    process.env.NEXT_PUBLIC_API_URL + `shortener/${id}`
   ).then((r) => r.json());
   return {
     props: {
@@ -13,7 +13,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const sites = await fetch(process.env.API_URL + 'shortener/').then((r) =>
+  const sites = await fetch(process.env.NEXT_PUBLIC_API_URL + 'shortener/').then((r) =>
     r.json()
   );
   const paths = sites.map((site) => ({
