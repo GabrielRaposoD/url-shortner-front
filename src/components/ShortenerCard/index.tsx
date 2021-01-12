@@ -52,7 +52,7 @@ const ShortenerCard: React.FC<any> = () => {
       </button>
       {shortened ? (
         <div className='flex flex-col mt-5 text-2xl font-medium text-center text-black'>
-          Here is your link:
+          Here is your new link:
           <a href={shortened} target='_blank' className='text-secondary-700'>
             {shortened}
           </a>
